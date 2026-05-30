@@ -1,0 +1,52 @@
+<!--
+  Tailwind option — standalone reference (compile tailwind.css first)
+  Link: <link rel="stylesheet" href="/assets/css/tailwind.css" />
+-->
+<div class="dashboard-shell-tw" dir="rtl" lang="ar" data-theme="light">
+  <aside class="sidebar-panel hidden lg:flex">
+    <div class="mb-10 flex items-center gap-4">
+      <div class="grid h-12 w-12 place-items-center rounded-lg bg-primary-600 text-xl text-white">﴾</div>
+      <div class="sidebar-label">
+        <p class="text-xs text-white/60">لوحة التحكم</p>
+        <h2 class="text-lg font-bold text-white">كتاب الإمام نافع</h2>
+      </div>
+    </div>
+    <nav class="space-y-1">
+      <a href="#" class="sidebar-link sidebar-link-active"><span class="sidebar-label">الرئيسية</span></a>
+      <a href="#" class="sidebar-link"><span class="sidebar-label">الحفظ</span></a>
+      <a href="#" class="sidebar-link"><span class="sidebar-label">الحضور</span></a>
+    </nav>
+  </aside>
+  <div class="dashboard-main-tw flex-1">
+    <header class="dashboard-topbar-tw">
+      <h1 class="text-xl font-bold">لوحة تحكم الأكاديمية</h1>
+      <button type="button" class="btn-primary">عرض التقرير</button>
+    </header>
+    <main class="p-6">
+      <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <article class="dashboard-stat reveal">
+          <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-text-muted)]">الحضور</p>
+          <p class="mt-3 text-3xl font-extrabold">١٢٨</p>
+          <p class="stat-trend-up mt-2">↑ ١٢٪ عن أمس</p>
+        </article>
+        <article class="dashboard-stat">
+          <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-text-muted)]">الطلاب</p>
+          <p class="mt-3 text-3xl font-extrabold">٤٢٠</p>
+        </article>
+      </section>
+      <section class="mt-8 grid gap-6 xl:grid-cols-[2fr_1fr]">
+        <div class="card-surface">
+          <h2 class="text-lg font-bold">أداء الحفظ</h2>
+          <div class="chart-placeholder mt-6">Chart placeholder</div>
+        </div>
+        <div class="glass-card">
+          <h3 class="font-bold">نشاط حديث</h3>
+          <ul class="mt-4 space-y-3 text-sm text-[var(--color-text-soft)]">
+            <li>تمت الموافقة على طلب جديد</li>
+            <li>تقرير الحضور جاهز</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

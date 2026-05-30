@@ -1,0 +1,389 @@
+/**
+ * Quran School Management Platform — Bootstrap 5 SCSS Theme
+ * Compile: sass public/assets/css/bootstrap-theme.scss public/assets/css/bootstrap-compiled.css
+ * Or merge variables into styles.css (CDN Bootstrap + this file's patterns)
+ */
+
+// ─── Design tokens ───
+$qsm-primary: #0f766e !default;
+$qsm-primary-dark: #0d5d52 !default;
+$qsm-gold: #d4af37 !default;
+$qsm-success: #16a34a !default;
+$qsm-danger: #dc2626 !default;
+$qsm-warning: #d97706 !default;
+
+$qsm-space-1: 0.25rem !default;  // 4px
+$qsm-space-2: 0.5rem !default;   // 8px
+$qsm-space-3: 0.75rem !default;  // 12px
+$qsm-space-4: 1rem !default;     // 16px
+$qsm-space-5: 1.25rem !default;
+$qsm-space-6: 1.5rem !default;
+$qsm-space-8: 2rem !default;
+$qsm-space-10: 2.5rem !default;
+$qsm-space-12: 3rem !default;
+
+$qsm-radius-sm: 0.5rem !default;   // 8px
+$qsm-radius-md: 0.75rem !default;  // 12px
+$qsm-radius-lg: 1rem !default;     // 16px
+$qsm-radius-xl: 1.25rem !default;
+
+$qsm-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05) !default;
+$qsm-shadow-soft: 0 4px 24px rgba(15, 23, 42, 0.06) !default;
+$qsm-shadow-card: 0 8px 32px rgba(15, 23, 42, 0.08) !default;
+$qsm-shadow-elevated: 0 16px 48px rgba(15, 23, 42, 0.12) !default;
+
+$qsm-duration-fast: 200ms !default;
+$qsm-duration: 250ms !default;
+$qsm-duration-slow: 300ms !default;
+$qsm-ease: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+// Bootstrap overrides (when importing bootstrap/scss/bootstrap)
+$primary: $qsm-primary;
+$success: $qsm-success;
+$danger: $qsm-danger;
+$warning: $qsm-warning;
+$secondary: $qsm-gold;
+$body-bg: #f8fafc;
+$body-color: #0f172a;
+$font-family-sans-serif: 'Cairo', 'Tajawal', 'Inter', system-ui, sans-serif;
+$border-radius: $qsm-radius-md;
+$border-radius-lg: $qsm-radius-lg;
+$border-radius-sm: $qsm-radius-sm;
+$enable-shadows: true;
+$input-border-radius: $qsm-radius-md;
+$btn-border-radius: $qsm-radius-md;
+$border-color: rgba(15, 23, 42, 0.08);
+
+// ─── Component overrides ───
+.btn-primary {
+  background: linear-gradient(135deg, $qsm-primary 0%, lighten($qsm-primary, 8%) 100%);
+  border: none;
+  box-shadow: $qsm-shadow-soft;
+  font-weight: 600;
+  transition: transform $qsm-duration-fast $qsm-ease, box-shadow $qsm-duration $qsm-ease;
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(135deg, $qsm-primary-dark 0%, $qsm-primary 100%);
+    transform: translateY(-2px);
+    box-shadow: $qsm-shadow-card;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: $body-color;
+  font-weight: 600;
+
+  &:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-outline-primary {
+  color: $qsm-primary;
+  border-color: rgba($qsm-primary, 0.35);
+  font-weight: 600;
+
+  &:hover {
+    background: rgba($qsm-primary, 0.08);
+    color: $qsm-primary-dark;
+  }
+}
+
+.btn-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $qsm-radius-md;
+}
+
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: qsm-spin 0.7s linear infinite;
+  }
+}
+
+@keyframes qsm-spin {
+  to { transform: rotate(360deg); }
+}
+
+.card,
+.dashboard-card,
+.auth-card {
+  border-radius: $qsm-radius-lg;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #fff;
+  box-shadow: $qsm-shadow-card;
+  transition: transform $qsm-duration-slow $qsm-ease, box-shadow $qsm-duration-slow $qsm-ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $qsm-shadow-elevated;
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  padding: $qsm-space-6;
+  border-radius: $qsm-radius-lg;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: $qsm-shadow-soft;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $qsm-primary, $qsm-gold);
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: $qsm-space-3 0 $qsm-space-2;
+    color: #0f172a;
+  }
+
+  &__trend {
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    &--up { color: $qsm-success; }
+    &--down { color: $qsm-danger; }
+  }
+
+  &__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: $qsm-radius-md;
+    display: grid;
+    place-items: center;
+    background: rgba($qsm-primary, 0.1);
+    color: $qsm-primary;
+  }
+}
+
+.form-control,
+.form-select,
+textarea.form-control {
+  min-height: 3rem;
+  border-radius: $qsm-radius-md;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 0.85rem 1rem;
+  transition: border-color $qsm-duration $qsm-ease, box-shadow $qsm-duration $qsm-ease;
+
+  &:focus {
+    border-color: $qsm-primary;
+    box-shadow: 0 0 0 3px rgba($qsm-primary, 0.12);
+  }
+
+  &.is-invalid {
+    border-color: $qsm-danger;
+    box-shadow: 0 0 0 3px rgba($qsm-danger, 0.12);
+  }
+
+  &.is-valid {
+    border-color: $qsm-success;
+  }
+}
+
+.form-floating > label {
+  color: #64748b;
+}
+
+.table-premium {
+  --bs-table-bg: transparent;
+
+  thead th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #64748b;
+    border-bottom: 2px solid rgba(15, 23, 42, 0.08);
+    padding: 1rem 1.25rem;
+  }
+
+  tbody td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    color: #475569;
+  }
+
+  tbody tr {
+    transition: background $qsm-duration-fast $qsm-ease;
+  }
+
+  tbody tr:hover {
+    background: #f8fafc;
+  }
+
+  &.table-striped tbody tr:nth-of-type(odd) {
+    background: #f8fafc;
+  }
+
+  &.table-sm thead th,
+  &.table-sm tbody td {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  &.active {
+    background: rgba($qsm-success, 0.12);
+    color: $qsm-success;
+  }
+
+  &.pending {
+    background: rgba($qsm-warning, 0.12);
+    color: $qsm-warning;
+  }
+
+  &.rejected {
+    background: rgba($qsm-danger, 0.12);
+    color: $qsm-danger;
+  }
+}
+
+.dashboard-sidebar {
+  width: 280px;
+  background: #0c2922;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.06);
+  transition: width $qsm-duration-slow $qsm-ease, transform $qsm-duration-slow $qsm-ease;
+
+  &.is-collapsed {
+    width: 5rem;
+
+    .sidebar-label,
+    .sidebar-profile-text {
+      display: none;
+    }
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: $qsm-radius-md;
+    color: rgba(255, 255, 255, 0.78);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    transition: all $qsm-duration $qsm-ease;
+
+    &.active {
+      background: rgba($qsm-primary, 0.35);
+      color: #fff;
+      box-shadow: inset 3px 0 0 $qsm-gold;
+    }
+
+    &:hover {
+      background: rgba($qsm-primary, 0.2);
+      color: #fff;
+      transform: translateX(-2px);
+    }
+  }
+}
+
+.modal-content {
+  border: none;
+  border-radius: $qsm-radius-xl;
+  box-shadow: $qsm-shadow-elevated;
+  animation: qsm-modal-in 0.28s $qsm-ease;
+}
+
+.modal-backdrop.show {
+  backdrop-filter: blur(4px);
+}
+
+@keyframes qsm-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Dark mode
+html[data-theme='dark'] {
+  --qsm-bg: #141f1c;
+  --qsm-surface: #1e2e29;
+  --qsm-text: #f1f5f9;
+
+  body {
+    background: var(--qsm-bg);
+    color: var(--qsm-text);
+  }
+
+  .card,
+  .dashboard-card,
+  .auth-card,
+  .stat-card {
+    background: var(--qsm-surface);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .form-control,
+  .form-select {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--qsm-text);
+  }
+
+  .table-premium tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}

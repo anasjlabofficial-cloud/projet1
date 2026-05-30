@@ -1,0 +1,44 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: quran_school_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ../:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: quran_school
+      DB_USER: quran_user
+      DB_PASS: secret123
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: quran_school_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: quran_school
+      MYSQL_USER: quran_user
+      MYSQL_PASSWORD: secret123
+    ports:
+      # Host 3308 → container 3306 (avoids conflict with local MySQL on Windows port 3306)
+      - "3308:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ../sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ../sql/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+volumes:
+  db_data:
